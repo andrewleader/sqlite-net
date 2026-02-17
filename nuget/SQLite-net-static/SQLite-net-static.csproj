@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net8.0;net9.0;net10.0;net10.0-android</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('OSX'))">$(TargetFrameworks);net10.0-ios</TargetFrameworks>
     <AssemblyName>SQLite-net</AssemblyName>
     <PackageId>sqlite-net-static</PackageId>
     <AssemblyTitle>SQLite-net .NET Standard P/Invoke Library</AssemblyTitle>
@@ -11,6 +12,12 @@
       This works on Xamarin.iOS, Xamarin.Mac, Wilderness Labs' Meadow, and any other platform that has a "sqlite3" library in the path.
     </Description>
     <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">true</IsAotCompatible>
+  </PropertyGroup>
+
+  <!-- Android/iOS-specific properties -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0-android' OR '$(TargetFramework)' == 'net10.0-ios'">
+    <AndroidGenerateResourceDesigner>false</AndroidGenerateResourceDesigner>
+    <GenerateResourceDesigner>false</GenerateResourceDesigner>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
