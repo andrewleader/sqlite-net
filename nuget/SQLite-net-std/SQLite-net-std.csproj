@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <!-- Android-specific properties -->
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0-android' or '$(TargetFramework)' == 'net10.0-ios'">
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0-android' OR '$(TargetFramework)' == 'net10.0-ios'">
     <AndroidGenerateResourceDesigner>false</AndroidGenerateResourceDesigner>
     <GenerateResourceDesigner>false</GenerateResourceDesigner>
   </PropertyGroup>
